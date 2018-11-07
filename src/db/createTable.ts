@@ -1,18 +1,18 @@
 import { Client } from 'pg';
 
 const EVENTS_TABLE = `
-CREATE TABLE IF NOT EXISTS TEMPLATE_EVENTS(
+CREATE TABLE IF NOT EXISTS EVENTS(
     id SERIAL PRIMARY KEY,
     event varchar(100) not null,
+    workflow varchar(100) not null,
     payload json not null,
-    when timestamp default NOW()
+    created timestamp default NOW()
 )`;
 
 const client = new Client({
-    host: 'watcher-development.ct65yek9ohzb.ap-southeast-2.rds.amazonaws.com',
+    host: 'localhost',
     port: 5432,
-    user: 'dcsadmin',
-    password: 'dcsy3s123'
+    database: 'watcher'
 });
 
 console.log('Connecting to RDS ...');
@@ -26,10 +26,11 @@ client.connect((err) => {
 
     client.query(EVENTS_TABLE, (err) => {
         if (err) {
-            console.log('Err creating TEMPLATE_EVENTS: ', err);
+            console.log('Err creating EVENTS: ', err);
         }
 
         console.log('Done.');
+        return;
     });
 });
 

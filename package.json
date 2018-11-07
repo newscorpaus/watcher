@@ -4,8 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "yarn run build-ts && yarn run tslint",
-    "watch": "yarn run build && concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\"  \"yarn run watch-ts\" \"yarn run serve\"",
+    "build": "yarn build-ts && yarn tslint",
+    "watch": "yarn build && concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\"  \"yarn run watch-ts\" \"yarn run serve\"",
     "test": "NODE_ENV=test mocha -r ts-node/register 'test/**/*.ts'",
     "build-ts": "tsc",
     "watch-ts": "tsc -w",

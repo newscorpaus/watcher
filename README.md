@@ -29,7 +29,13 @@ DCS received the CAPI Update and published it internally
 DCS invalidates the article in Tabula.
 DCS invalidates the article in Varnish.
 
-### 2. CAPI Legal Kill
+
+Editor/Producer question - "Alexa, have any articles failed in the last five minutes?"
+Editor/Producer question - "Tell me about the dumb blind penguin."
+
+
+
+### 2. CAPI Legal Kill - do not solve, Kurator has a high level tool for this.
 
 Legal kill event from Kurator
 CAPI received the update
