@@ -25,7 +25,7 @@ server.use(compression());
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 // server.use(express.static(join('./../ui/', 'public'), { maxAge: 31557600000 }));
-server.use(express.static(join(__dirname, './../ui/public')));
+server.use(express.static(join(__dirname, './../ui/dist')));
 
 /**
  * Routing

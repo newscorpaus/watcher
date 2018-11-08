@@ -26,7 +26,7 @@ server.use(compression());
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 // server.use(express.static(join('./../ui/', 'public'), { maxAge: 31557600000 }));
-server.use(express.static(path_1.join(__dirname, './../ui/public')));
+server.use(express.static(path_1.join(__dirname, './../ui/dist')));
 /**
  * Routing
  */
@@ -35,10 +35,6 @@ server.get('/article-updates/:articleId', articleUpdate_1.articleUpdate);
 server.get('/db/generate', generator_1.generatorEndpoint);
 server.put('/upload', upload_1.uploadEndpoint);
 server.get('/db', db_1.dbEndpoint);
-// server.get('/', (req, res) => {
-//   res.sendFile(join('./../ui/', 'public') + '/index.html');
-// });
-// server.use('/', express.static(join('./../ui/', 'public') + '/index.html', { maxAge: 31557600000 }));
 /**
  * Start Express server.
  */
