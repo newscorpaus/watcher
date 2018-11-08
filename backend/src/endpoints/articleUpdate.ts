@@ -1,5 +1,6 @@
 import { Client } from 'pg';
 import { Request, Response, RequestHandler, NextFunction } from 'express';
+import { validator } from './../validators/article-update';
 
 const client = new Client({
     host: 'localhost',
@@ -8,7 +9,6 @@ const client = new Client({
 });
 
 const articleUpdate = (req: Request, res: Response, next: NextFunction) => {
-    console.log('Running .... ');
     const articleId = req.params.articleId;
 
     client.connect((err) => {
@@ -22,10 +22,7 @@ const articleUpdate = (req: Request, res: Response, next: NextFunction) => {
                 return next(err);
             }
 
-            const reply = [{
-                valid: true,
-                events: results.rows
-            }];
+            const reply = [validator(results.rows)];
 
             res.json(reply);
         });
