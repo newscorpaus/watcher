@@ -11,25 +11,26 @@ const client = new Client({
 const articleUpdate = (req: Request, res: Response, next: NextFunction) => {
     const articleId = req.params.articleId;
 
-    client.connect((err) => {
-        if (err) {
-            console.log('Err connecting to lookup ', articleId);
-            return next(err);
-        }
+    // client.connect((err) => {
+    //     if (err) {
+    //         console.log('Err connecting to lookup ', articleId);
+    //         return next(err);
+    //     }
 
-        client.query(getSelectQuery(articleId), (err, results) => {
-            if (err) {
-                return next(err);
-            }
+    //     client.query(getSelectQuery(articleId), (err, results) => {
+    //         if (err) {
+    //             return next(err);
+    //         }
 
-            const reply = [validator(results.rows)];
+    //         const reply = [validator(results.rows)];
 
-            client.end(() => {
-                res.json(reply);
-            });
-        });
-    });
+    //         client.end(() => {
+    //             res.json(reply);
+    //         });
+    //     });
+    // });
 
+    return res.json({ message: 'New way of doing data coming' });
 };
 
 function getSelectQuery(articleId: string): string {
