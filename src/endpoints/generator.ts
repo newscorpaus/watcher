@@ -9,7 +9,13 @@ import uuid = require('uuid');
 let inserted: any[] = [];
 
 const generatorEndpoint = (req: Request, res: Response, next: NextFunction) => {
-    const times = req.query.times;
+    let times = req.query.times;
+    const random = req.query.random;
+
+    if (random) {
+        times = Math.floor(Math.random() * Math.floor(8));
+    }
+
     const articleId = req.query.articleId || uuid.v4();
 
     generator(times, articleId, () => {

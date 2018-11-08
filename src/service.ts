@@ -8,6 +8,7 @@ import { articleUpdate } from './endpoints/articleUpdate';
 import { articleUpdateReport } from './endpoints/articleUpdateErrors';
 import { generatorEndpoint } from './endpoints/generator';
 import { dbEndpoint } from './endpoints/db';
+import { uploadEndpoint } from './endpoints/upload';
 import { join } from 'path';
 
 /**
@@ -30,9 +31,11 @@ server.use(express.static(join(__dirname, 'public'), { maxAge: 31557600000 }));
  */
 server.get('/article-updates/report', articleUpdateReport);
 
- server.get('/article-updates/:articleId', articleUpdate);
+server.get('/article-updates/:articleId', articleUpdate);
 
 server.get('/db/generate', generatorEndpoint);
+
+server.put('/upload', uploadEndpoint);
 
 server.get('/db', dbEndpoint);
 
