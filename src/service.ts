@@ -28,7 +28,7 @@ server.use(express.static(join(__dirname, 'public'), { maxAge: 31557600000 }));
  */
 server.get('/article-updates/:articleId', articleUpdate);
 
-server.get('/article-updates/errors', articleUpdateErrors);
+server.get('/article-updates/report', articleUpdateErrors);
 
 /**
  * Start Express server.
