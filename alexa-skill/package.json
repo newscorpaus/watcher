@@ -1,0 +1,26 @@
+{
+  "name": "DevFoundry-sls-alexa",
+  "version": "2.0.0",
+  "description": "Alexa News Corp Genius",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "alexa",
+    "skill",
+    "fact"
+  ],
+  "author": "Amazon.com",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "ask-sdk": "^2.0.0",
+    "cross-fetch": "*"
+  },
+  "devDependencies": {
+    "serverless-alexa-skills": "^0.1.0",
+    "serverless-webpack": "^5.2.0",
+    "webpack": "^4.25.1",
+    "webpack-node-externals": "^1.7.2"
+  }
+}
