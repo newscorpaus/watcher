@@ -1,17 +1,25 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const pg_1 = require("pg");
-const client = new pg_1.Client({
-    host: 'localhost',
-    port: 5432,
-    database: 'watcher'
-});
-const articleUpdateErrors = (req, res, next) => {
-    const articleId = req.params.articleId;
-    res.send({ 'message': 'Consider yourself surprised. There have been some wonderful moments in article updating in the last 10 minutes!' });
+const db_1 = require("./../db");
+const ramda_1 = require("ramda");
+const articleUpdateReport = (req, res, next) => {
+    console.log('a!!!!');
+    const articleIds = ramda_1.keys(db_1.db);
+    console.log('b');
+    const finder = (articleId) => {
+        return db_1.db[articleId].valid == false;
+    };
+    console.log(1);
+    const incompleteUpdates = ramda_1.filter(finder, articleIds);
+    const incompletes = [];
+    console.log(2);
+    incompleteUpdates.forEach((articleId) => {
+        incompletes.push(db_1.db[articleId]);
+    });
+    console.log(3);
+    incompletes.push('test');
+    console.log('incompletes: ', incompletes);
+    res.json(incompletes);
 };
-exports.articleUpdateErrors = articleUpdateErrors;
-function getSelectQuery(articleId) {
-    return `select * from ARTICLE_UPDATES where capi_id='${articleId}'`;
-}
+exports.articleUpdateReport = articleUpdateReport;
 //# sourceMappingURL=articleUpdateErrors.js.map

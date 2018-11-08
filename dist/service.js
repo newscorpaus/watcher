@@ -8,6 +8,8 @@ const bodyParser = require("body-parser");
 const compression = require("compression"); // compresses requests
 const articleUpdate_1 = require("./endpoints/articleUpdate");
 const articleUpdateErrors_1 = require("./endpoints/articleUpdateErrors");
+const generator_1 = require("./endpoints/generator");
+const db_1 = require("./endpoints/db");
 const path_1 = require("path");
 /**
  * Create Express server.
@@ -26,8 +28,10 @@ server.use(express.static(path_1.join(__dirname, 'public'), { maxAge: 3155760000
 /**
  * Routing
  */
+server.get('/article-updates/report', articleUpdateErrors_1.articleUpdateReport);
 server.get('/article-updates/:articleId', articleUpdate_1.articleUpdate);
-server.get('/article-updates/errors', articleUpdateErrors_1.articleUpdateErrors);
+server.get('/db/generate', generator_1.generatorEndpoint);
+server.get('/db', db_1.dbEndpoint);
 /**
  * Start Express server.
  */

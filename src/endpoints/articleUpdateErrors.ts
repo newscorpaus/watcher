@@ -1,20 +1,33 @@
-import { Client } from 'pg';
 import { Request, Response, RequestHandler, NextFunction } from 'express';
-import { validator } from './../validators/article-update';
+import { db } from './../db';
+import { keys, filter } from 'ramda';
 
-const client = new Client({
-    host: 'localhost',
-    port: 5432,
-    database: 'watcher'
-});
+const articleUpdateReport = (req: Request, res: Response, next: NextFunction) => {
+    console.log('a!!!!');
+    const articleIds = keys(db);
+    console.log('b');
 
-const articleUpdateErrors = (req: Request, res: Response, next: NextFunction) => {
-    const articleId = req.params.articleId;
-    res.send({ 'message': 'Consider yourself surprised. There have been some wonderful moments in article updating in the last 10 minutes!' });
+    const finder = (articleId: string) => {
+        return db[articleId].valid == false;
+    };
+
+    console.log(1);
+
+    const incompleteUpdates = filter(finder, articleIds);
+    const incompletes: any = [];
+
+    console.log(2);
+
+    incompleteUpdates.forEach((articleId: any) => {
+        incompletes.push(db[articleId]);
+    });
+
+    console.log(3);
+
+    incompletes.push('test');
+    console.log('incompletes: ', incompletes);
+
+    res.json(incompletes);
 };
 
-function getSelectQuery(articleId: string): string {
-    return `select * from ARTICLE_UPDATES where capi_id='${ articleId }'`;
-}
-
-export { articleUpdateErrors };
+export { articleUpdateReport };
