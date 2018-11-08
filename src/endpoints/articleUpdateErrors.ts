@@ -16,7 +16,13 @@ const articleUpdateReport = (req: Request, res: Response, next: NextFunction) =>
         incompletes.push(db[articleId]);
     });
 
-    res.json(incompletes);
+    const report = {
+        complete: incompletes,
+        pending: incompletes,
+        failed: incompletes
+    }
+
+    res.json(report);
 };
 
 export { articleUpdateReport };
