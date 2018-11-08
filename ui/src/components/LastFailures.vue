@@ -6,51 +6,35 @@
           GET UPDATE
       </button>
     </div>
-    <table border="1" v-if="getLastArticleUpdates.length > 0">
-          <thead>
-              <tr>
-                  <th>capi_id</th>
-                  <th>Event</th>
-                  <th>workflow</th>
-                  <th>Received</th>
-                  <th>Created</th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr class="item-list"
-                  v-for="item in getLastArticleUpdates"
-                      :key="item.id"
-                      :item="item">
-                  <td>{{ item.capi_id }}</td>
-                  <td>{{ item.event }}</td>
-                  <td>{{ item.workflow }}</td>
-                  <td>{{ item.received }}</td>
-                  <td>{{ item.created }}</td>
-              </tr>
-          </tbody>
-      </table>
+    <div class="watcher-status__wrapper" v-if="getStatus">Status: <span class="watcher-status" v-bind:class="{ 'watcher-status--active': getStatus }">{{ getStatus }}</span></div>
+    
+    <TimeLine v-bind:updates="getLastArticleUpdates" v-bind:status="getStatus" />
+
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import TimeLine from './TimeLine.vue'
 
 export default {
   name: 'LastFailures',
+  components: {
+    TimeLine
+  },
   data: () => {
     return {
       userInput: ''
     }
   },
   computed: mapGetters([
-        'getLastArticleUpdates'
+        'getLastArticleUpdates',
+        'getStatus'
   ]),
-  // methods: mapActions([
-  //     'FETCH_ALL'
-  // ])
   methods: {
     fetchAll() {
       const userInput = this.$data.userInput
+
       this.$store.dispatch('FETCH_ALL', userInput)
     }
   }
@@ -72,5 +56,15 @@ li {
 }
 a {
   color: #42b983;
+}
+
+.watcher-status--active {
+  color: green;
+}
+
+.watcher-status__wrapper {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: left;
 }
 </style>

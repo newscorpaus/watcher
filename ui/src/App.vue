@@ -29,17 +29,4 @@ export default {
   margin-right: auto;
 }
 
-table {
-  border: 1px solid #333;
-  border-collapse: collapse;
-}
-
-table tr td {
-  padding: 2px;
-}
-
-table tr:nth-child(even) {
-  background-color: #DDD;
-}
-
 </style>
