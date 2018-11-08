@@ -1,15 +1,58 @@
 <template>
   <div class="watcher-last-failures">
-    <h1>{{ msg }}</h1>
-    
+    <div class="watcher-form">
+      <input type="text" v-model="userInput" />
+      <button class="btn" @click="fetchAll">
+          GET UPDATE
+      </button>
+    </div>
+    <table border="1" v-if="getLastArticleUpdates.length > 0">
+          <thead>
+              <tr>
+                  <th>capi_id</th>
+                  <th>Event</th>
+                  <th>workflow</th>
+                  <th>Received</th>
+                  <th>Created</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr class="item-list"
+                  v-for="item in getLastArticleUpdates"
+                      :key="item.id"
+                      :item="item">
+                  <td>{{ item.capi_id }}</td>
+                  <td>{{ item.event }}</td>
+                  <td>{{ item.workflow }}</td>
+                  <td>{{ item.received }}</td>
+                  <td>{{ item.created }}</td>
+              </tr>
+          </tbody>
+      </table>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  name: 'Last Failures',
-  props: {
-    msg: String
+  name: 'LastFailures',
+  data: () => {
+    return {
+      userInput: ''
+    }
+  },
+  computed: mapGetters([
+        'getLastArticleUpdates'
+  ]),
+  // methods: mapActions([
+  //     'FETCH_ALL'
+  // ])
+  methods: {
+    fetchAll() {
+      const userInput = this.$data.userInput
+      this.$store.dispatch('FETCH_ALL', userInput)
+    }
   }
 }
 </script>
