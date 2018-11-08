@@ -20,7 +20,7 @@ const articleUpdateReport = (req: Request, res: Response, next: NextFunction) =>
         complete: incompletes,
         pending: incompletes,
         failed: incompletes
-    }
+    };
 
     res.json(report);
 };
