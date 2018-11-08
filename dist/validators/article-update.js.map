@@ -1,0 +1,1 @@
+{"version":3,"file":"article-update.js","sourceRoot":"","sources":["../../src/validators/article-update.ts"],"names":[],"mappings":";;AAAA,kDAAiD;AAEjD,MAAM,SAAS,GAAG,CAAC,IAAW,EAAU,EAAE;IACtC,6BAA6B;IAE7B,MAAM,KAAK,GAAG,IAAI,CAAC,MAAM,GAAG,iBAAQ,CAAC,MAAM,IAAI,CAAC,CAAC;IACjD,OAAO;QACH,KAAK,EAAE,KAAK;QACZ,MAAM,EAAE,IAAI;KACf,CAAC;AACN,CAAC,CAAC;AAEO,8BAAS"}
