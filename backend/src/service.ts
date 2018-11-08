@@ -5,6 +5,7 @@ import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as compression from 'compression';  // compresses requests
 import { articleUpdate } from './endpoints/articleUpdate';
+import { articleUpdateErrors } from './endpoints/articleUpdateErrors';
 import { join } from 'path';
 
 /**
@@ -26,6 +27,8 @@ server.use(express.static(join(__dirname, 'public'), { maxAge: 31557600000 }));
  * Routing
  */
 server.get('/article-updates/:articleId', articleUpdate);
+
+server.get('/article-updates/errors', articleUpdateErrors);
 
 /**
  * Start Express server.
