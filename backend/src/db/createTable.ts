@@ -1,12 +1,14 @@
 import { Client } from 'pg';
 
 const EVENTS_TABLE = `
-CREATE TABLE IF NOT EXISTS EVENTS(
+CREATE TABLE IF NOT EXISTS ARTICLE_UPDATES(
     id SERIAL PRIMARY KEY,
+    capiId varchar(100) not null,
     event varchar(100) not null,
     workflow varchar(100) not null,
     payload json not null,
-    created timestamp default NOW()
+    received timestamp default NOW(),
+    created timestamp
 )`;
 
 const client = new Client({

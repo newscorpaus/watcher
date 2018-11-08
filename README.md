@@ -49,3 +49,19 @@ DCS invalidates the article in Varnish.
 
 ### Original
 A service that can accept JSON events from a variety of systems and relate them to simple workflows - so we can see how our systems interoperate across Kurator, CAPI, TCOG, Wordpress, etc.. This is useful as it lets the business easily see whether certain things are done or not (e.g. legal kills). For a voice component, someone might subscribe to hear about events for a particular CAPI ID - e.g. "Tell me when XYZ123 is updated in TCOG".
+
+
+
+# Working Notes
+
+## TODO
+
+1) Create fake JSON events
+
+just use manual fixtures to begin with .. a little script that generates a UUID for the CAPI ID, then takes an integer for how many events it should proceed with.
+
+2) Create the endpoint that writes into Postgres
+
+3) Create the validation logic
+
+4) Create the API for UI integration.
