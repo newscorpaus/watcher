@@ -24,7 +24,9 @@ const articleUpdate = (req: Request, res: Response, next: NextFunction) => {
 
             const reply = [validator(results.rows)];
 
-            res.json(reply);
+            client.end(() => {
+                res.json(reply);
+            });
         });
     });
 
