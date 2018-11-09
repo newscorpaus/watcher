@@ -1,0 +1,1 @@
+{"version":3,"file":"db.js","sourceRoot":"","sources":["../../src/endpoints/db.ts"],"names":[],"mappings":";;AACA,gCAA6B;AAC7B,qDAAkD;AAGlD,MAAM,UAAU,GAAG,CAAC,GAAY,EAAE,GAAa,EAAE,IAAkB,EAAE,EAAE;IACnE,2BAAY,EAAE,CAAC;IAEf,GAAG,CAAC,IAAI,CAAC,OAAE,CAAC,CAAC;AACjB,CAAC,CAAC;AAIO,gCAAU"}

@@ -19,17 +19,19 @@ export default new Vuex.Store({
       const eventsList = state.receivedData.events || []
 
       return eventsList
+    },
+    getStatus (state) {
+      return state.receivedData.status
     }
   },
   actions: {
     FETCH_ALL ({commit}, userInput) {
-
-      console.log(userInput)
+      const dataJson = './article-updates/' + userInput
       
       axios
-        .get('./data.json')
+        .get(dataJson)
           .then(response => {
-            commit('setAll', response.data[0])
+            commit('setAll', response.data)
           })
     }
   }
