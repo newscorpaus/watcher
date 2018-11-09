@@ -86,7 +86,6 @@ const ArticlePublishingHandler = {
   async handle(handlerInput) {
     console.log('ArticlePublishingHandler.handle');
 
-    // https://api.chartbeat.com/live/toppages/v3/?apikey=55d4b82e24d28d821dac0fc802dac83f&host=dailytelegraph.com.au
     let data = await request(`https://devfoundry.herokuapp.com/article-updates/report`);
     
     console.log('data', data.pages);
@@ -99,6 +98,7 @@ const ArticlePublishingHandler = {
       .getResponse();
   }
 };
+
 
 
 
