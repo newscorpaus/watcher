@@ -16,6 +16,9 @@
 import { mapGetters } from 'vuex'
 import TimeLine from './TimeLine.vue'
 
+const urlParams = new URLSearchParams(window.location.search)
+const capiId = urlParams.get('capiId')
+
 export default {
   name: 'LastFailures',
   components: {
@@ -23,7 +26,7 @@ export default {
   },
   data: () => {
     return {
-      userInput: ''
+      userInput: capiId
     }
   },
   computed: mapGetters([
@@ -31,10 +34,15 @@ export default {
         'getStatus'
   ]),
   methods: {
-    fetchAll() {
-      const userInput = this.$data.userInput
+    fetchAll(capiId) {
+      const requestId = capiId ? capiId : this.$data.userInput
 
-      this.$store.dispatch('FETCH_ALL', userInput)
+      this.$store.dispatch('FETCH_ALL', requestId)
+    }
+  },
+  mounted () {
+    if (capiId) {
+      this.fetchAll()
     }
   }
 }
