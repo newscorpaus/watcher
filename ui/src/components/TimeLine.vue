@@ -117,10 +117,10 @@ export default {
     top: 0;
     right: 0;
     padding: 20px;
-    display: inline;
     position: absolute;
     background-color: #DADADA;
     margin-right: 20px;
+    width: 210px;
 }
 
 .watcher-timeline__item:nth-child(even) .watcher-timeline__item-dialog {
