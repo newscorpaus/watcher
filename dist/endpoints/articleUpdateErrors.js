@@ -31,9 +31,9 @@ const articleUpdateReport = (req, res, next) => {
         failed.push(db_1.db[articleId]);
     });
     const report = {
-        complete: completes,
         pending: pending,
-        failed: failed
+        failed: failed,
+        complete: completes
     };
     res.json(report);
 };

@@ -12,7 +12,7 @@ const updateStates = () => {
         }
         const lastEvent = article.events[article.events.length - 1];
         const then = moment(lastEvent.received);
-        const fiveMinutesAgo = moment().subtract(10, 'seconds');
+        const fiveMinutesAgo = moment().subtract(30, 'seconds');
         if (then.isBefore(fiveMinutesAgo)) {
             article.status = 'failed';
         }
