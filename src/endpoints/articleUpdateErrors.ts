@@ -42,9 +42,9 @@ const articleUpdateReport = (req: Request, res: Response, next: NextFunction) =>
     });
 
     const report = {
-        complete: completes,
         pending: pending,
-        failed: failed
+        failed: failed,
+        complete: completes
     };
 
     res.json(report);
