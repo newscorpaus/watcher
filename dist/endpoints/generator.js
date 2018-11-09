@@ -25,7 +25,7 @@ const generator = (n, articleId, cb) => {
         baseUTC = baseUTC.add(getRandomMilliseconds(3000), 'milliseconds');
         if (!db_1.db[articleId]) {
             db_1.db[articleId] = {
-                valid: false,
+                status: 'pending',
                 events: []
             };
         }
@@ -33,12 +33,13 @@ const generator = (n, articleId, cb) => {
             capi_id: articleId,
             event: update_1.workflow[i],
             workflow: 'ArticleUpdates',
-            created: baseUTC
+            created: baseUTC,
+            received: moment.utc()
         };
         db_1.db[articleId].events.push(entry);
         inserted.push(entry);
         if (n == 8) {
-            db_1.db[articleId].valid = true;
+            db_1.db[articleId].status = 'complete';
         }
         cb();
     };

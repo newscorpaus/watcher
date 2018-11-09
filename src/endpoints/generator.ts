@@ -32,7 +32,7 @@ const generator = (n: number, articleId: string, cb: Watcher.Callback): void => 
 
         if (!db[articleId]) {
             db[articleId] = {
-                valid: false,
+                status: 'pending',
                 events: []
             };
         }
@@ -41,7 +41,8 @@ const generator = (n: number, articleId: string, cb: Watcher.Callback): void => 
             capi_id: articleId,
             event: workflow[i],
             workflow: 'ArticleUpdates',
-            created: baseUTC
+            created: baseUTC,
+            received: moment.utc()
         };
 
         db[articleId].events.push(entry);
@@ -49,7 +50,7 @@ const generator = (n: number, articleId: string, cb: Watcher.Callback): void => 
         inserted.push(entry);
 
         if (n == 8) {
-            db[articleId].valid = true;
+            db[articleId].status = 'complete';
         }
 
         cb();

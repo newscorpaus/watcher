@@ -1,25 +1,50 @@
 import { Request, Response, RequestHandler, NextFunction } from 'express';
 import { db } from './../db';
 import { keys, filter } from 'ramda';
+import { updateStates } from './lib/updateStates';
 
 const articleUpdateReport = (req: Request, res: Response, next: NextFunction) => {
+    updateStates();
+
     const articleIds = keys(db);
 
-    const finder = (articleId: string) => {
-        return db[articleId].valid == false;
+    const completeFinder = (articleId: string) => {
+        return db[articleId].status == 'complete';
     };
 
-    const incompleteUpdates = filter(finder, articleIds);
-    const incompletes: any = [];
+    const pendingFinder = (articleId: string) => {
+        return db[articleId].status == 'pending';
+    };
 
-    incompleteUpdates.forEach((articleId: any) => {
-        incompletes.push(db[articleId]);
+    const failedFinder = (articleId: string) => {
+        return db[articleId].status == 'failed';
+    };
+
+
+    const completeIds = filter(completeFinder, articleIds);
+    const pendingIds =  filter(pendingFinder, articleIds);
+    const failedIds =  filter(failedFinder, articleIds);
+
+    const completes: any = [];
+    const pending: any = [];
+    const failed: any = [];
+
+    completeIds.forEach((articleId: any) => {
+        completes.push(db[articleId]);
+    });
+
+    pendingIds.forEach((articleId: any) => {
+        pending.push(db[articleId]);
+    });
+
+    failedIds.forEach((articleId: any) => {
+        failed.push(db[articleId]);
     });
 
     const report = {
-        complete: incompletes,
-        pending: incompletes,
-        failed: incompletes
+        complete: completes,
+        pending: pending,
+        failed: failed
     };
 
     res.json(report);
