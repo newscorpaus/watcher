@@ -34,15 +34,15 @@ export default {
         'getStatus'
   ]),
   methods: {
-    fetchAll(capiId) {
-      const requestId = capiId ? capiId : this.$data.userInput
+    fetchAll() {
+      const requestId = this.$data.userInput
 
       this.$store.dispatch('FETCH_ALL', requestId)
     }
   },
   mounted () {
     if (capiId) {
-      this.fetchAll()
+      this.$store.dispatch('FETCH_ALL', capiId)
     }
   }
 }
