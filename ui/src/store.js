@@ -27,12 +27,13 @@ export default new Vuex.Store({
   actions: {
     FETCH_ALL ({commit}, userInput) {
 
-      console.log(userInput)
+      //const dataJson = './article-updates/' + userInput
+      const dataJson = 'data.json'
 
       axios
-        .get('./data.json')
+        .get(dataJson)
           .then(response => {
-            commit('setAll', response.data[0])
+            commit('setAll', response.data)
           })
     }
   }

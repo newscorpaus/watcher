@@ -6,7 +6,6 @@
           GET UPDATE
       </button>
     </div>
-    <div class="watcher-status__wrapper" v-if="getStatus">Status: <span class="watcher-status" v-bind:class="{ 'watcher-status--active': getStatus }">{{ getStatus }}</span></div>
     
     <TimeLine v-bind:updates="getLastArticleUpdates" v-bind:status="getStatus" />
 
@@ -66,5 +65,20 @@ a {
   font-size: 20px;
   font-weight: bold;
   text-align: left;
+}
+
+.watcher-form {
+  margin-bottom: 20px;
+}
+
+.watcher-form input {
+  font-size: 20px;
+  width: 400px;
+}
+
+.watcher-form button {
+  font-size: 20px;
+  margin-left: 10px;
+  font-weight: bold;
 }
 </style>

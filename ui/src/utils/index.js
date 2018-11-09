@@ -9,21 +9,11 @@ function isEventTimeOut(events) {
 
 export function getStatus(valid, events) {
     if (valid && events.length >= 8) {
-        return "Completed"
+        return "complete"
     } else if (!valid && events.length < 8 && !isEventTimeOut(events)) {
-        return "Pending"
+        return "pending"
     } else {
-        return "InCompleted"
+        return "fail"
     }
 }
 
-// function testTimeout() {
-//     const timeNow = new Date.now()
-//     const future = moment(timeNow).add(10, 'minute')
-
-//     const test = moment(future) - moment(timeNow)
-
-//     console.log(test)
-// }
-
-// testTimeout()
