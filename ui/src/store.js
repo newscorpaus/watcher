@@ -21,15 +21,13 @@ export default new Vuex.Store({
       return eventsList
     },
     getStatus (state) {
-      return state.receivedData.valid
+      return state.receivedData.status
     }
   },
   actions: {
     FETCH_ALL ({commit}, userInput) {
-
-      //const dataJson = './article-updates/' + userInput
-      const dataJson = 'data.json'
-
+      const dataJson = './article-updates/' + userInput
+      
       axios
         .get(dataJson)
           .then(response => {

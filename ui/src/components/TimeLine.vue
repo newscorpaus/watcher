@@ -1,9 +1,9 @@
 <template>
     <div class="watcher-timeline__canvas" 
         v-bind:class="{ 
-            'watcher-timeline__canvas--pending': getStatus(status, updates) === 'pending', 
-            'watcher-timeline__canvas--completed': getStatus(status, updates) === 'completed',
-            'watcher-timeline__canvas--incompleted': getStatus(status, updates) === 'incompleted' 
+            'watcher-timeline__canvas--pending': status === 'pending', 
+            'watcher-timeline__canvas--completed': status === 'complete',
+            'watcher-timeline__canvas--incompleted': status === 'failed' 
         }"
         v-if="updates.length > 0">
         <div class="watcher-timeline__item" v-for="item in updates"
@@ -20,19 +20,17 @@
 
 <script>
 import moment from 'moment'
-import { getStatus } from '../utils'
 
 export default {
   name: 'TimeLine',
   props: {
       updates: Array,
-      status: Boolean
+      status: String
   },
   methods: {
     formatDate: (date) => {
         return moment(date).format('MM-DD-YYYY HH:MM:SS')
-    },
-    getStatus
+    }
   }
 }
 </script>
